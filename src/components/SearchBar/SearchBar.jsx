@@ -6,7 +6,7 @@ class SearchBar extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            searchterms: ''
+            searchTerms: ''
         }
     }
     
@@ -27,7 +27,7 @@ class SearchBar extends Component {
             <div className="searchBar">
                 <form onSubmit={this.handleSubmit}>
                     <div className="search">
-                        <input type="text" className="searchTerm" name="searcchTerm" onChange={this.handleChange} placeholder="Search Videos" />
+                        <input type="text" className="searchTerm" name="searchTerm" onChange={this.handleChange} placeholder="Search.." />
                         <button type="submit" className="searchButton">Search Videos</button>
                     </div>
                 </form>

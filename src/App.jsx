@@ -5,6 +5,7 @@ import './App.css'
 import {googleAPIKey} from './Keys'
 import VideoPlayer from './components/Videos/Videos';
 import RelatedVideos from './components/RelatedVideos/RelatedVideos';
+import Comment from './components/Comment/Comment';
 
 
 
@@ -43,6 +44,15 @@ class App extends Component {
         const response = await axios.get("https://www.googleapis.com/youtube/v3/search?q=lofi&duration=long&key=AIzaSyDxx-CQ2sCfb5yUfHqTL0fbXGOaqACFiJg")
     }
 
+    addComment = async (comment) => {
+        let response = await axios.post('http://127.0.0.1:8000/comment/', comment);
+        
+    }
+
+    addReply = async (reply) => {
+        let response = await axios.post('http://127.0.0.1:8000/reply/', reply);
+        
+    }
     
 
     render() {
@@ -52,6 +62,7 @@ class App extends Component {
                 <SearchBar filtersongs={this.searchForSongs}/>
                 <VideoPlayer />
                 <RelatedVideos />
+                <Comment createComment={this.addComment}/>
             </div>
         )
     }

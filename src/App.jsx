@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import SearchBar from './components/SearchBar/SearchBar';
 import './App.css'
+import {googleAPITKey} from './Keys'
 
 
 
@@ -10,6 +11,9 @@ class App extends Component {
         super(props);
         this.state = [];
     }
+    
+
+
     
     searchForSongs = async (searchTerm) => {
         let filteredSongs = this.state.songfs.filter(function (song) {

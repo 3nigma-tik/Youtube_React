@@ -13,35 +13,32 @@ class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            searchTerm:'dogs'
+            searchTerm:'dogs',
+            searchResults:[]
         };
     }
 
     getVideo = async () => {
         let response = await axios.get('https://www.googleapis.com/youtube/v3/search?q=' + this.state.searchTerm +'&key=AIzaSyDxx-CQ2sCfb5yUfHqTL0fbXGOaqACFiJg&part=snippet')
         this.setState({      
-          searchTerm: response.data
+          searchResults: response.data.items
         });
     }
     
 
 
     
-    searchForSongs = async (searchTerm) => {
-        let filteredSongs = this.state.songs.filter(function (song) {
-            if (song.title.includes(searchTerm) || song.artist.includes(searchTerm) || song.album.includes(searchTerm) || song.genre.includes(searchTerm)){
+    searchForVideo = async (searchTerm) => {
+        let filteredVideo = this.state.searchResults.filter(function (results) {
+            if (results.includes(searchTerm)){
                 return true
             } else {
                 return false;
             }
         })
         this.setState({
-            searchTerm: filteredSongs
+            searchTerm: filteredVideo
         });
-    }
-
-    playVideo = async () => {
-        const response = await axios.get("https://www.googleapis.com/youtube/v3/search?q=lofi&duration=long&key=AIzaSyDxx-CQ2sCfb5yUfHqTL0fbXGOaqACFiJg")
     }
 
     addComment = async (comment) => {
@@ -59,9 +56,10 @@ class App extends Component {
         return (
             <div>
                 <h1>YouTube React Project</h1>
-                <SearchBar filtersongs={this.searchForSongs}/>
+                <SearchBar filterVideos={this.searchForVideo}/>
                 <VideoPlayer />
                 <RelatedVideos />
+                <h4>Comment Here</h4>
                 <Comment createComment={this.addComment}/>
             </div>
         )

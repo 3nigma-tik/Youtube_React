@@ -32,8 +32,11 @@ class App extends Component {
     render() {
         return (
             <div>
-                <h1>YouTube React Project</h1>
                 <SearchBar  filtersongs={this.searchForSongs}/>
+                <iframe id="ytplayer" type="text/html" width="640" height="360"
+  src="https://www.youtube.com/embed/M7lc1UVf-VE?autoplay=1&origin=http://example.com"
+  frameborder="0"></iframe>
+                <h1>YouTube React Project</h1>
             </div>
         )
     }

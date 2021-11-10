@@ -1,18 +1,26 @@
 import React, { Component } from 'react';
 import SearchBar from './components/SearchBar/SearchBar';
-import './App.css';
-import {googleAPIKey} from './Keys';
+import axios from 'axios';
+import './App.css'
+import {googleAPIKey} from './Keys'
 import VideoPlayer from './components/Videos/Videos';
 import RelatedVideos from './components/RelatedVideos/RelatedVideos';
-import axios from 'axios';
-
 
 
 
 class App extends Component {
     constructor(props) {
         super(props);
-        this.state = [];
+        this.state = {
+            searchTerm:'dogs'
+        };
+    }
+
+    getVideo = async () => {
+        let response = await axios.get('https://www.googleapis.com/youtube/v3/search?q=' + this.state.searchTerm +'&key=AIzaSyDxx-CQ2sCfb5yUfHqTL0fbXGOaqACFiJg&part=snippet')
+        this.setState({      
+          searchTerm: response.data
+        });
     }
     
 
@@ -27,7 +35,7 @@ class App extends Component {
             }
         })
         this.setState({
-            songs: filteredSongs
+            searchTerm: filteredSongs
         });
     }
 

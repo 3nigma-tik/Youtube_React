@@ -3,6 +3,7 @@ import SearchBar from './components/SearchBar/SearchBar';
 import axios from 'axios';
 import './App.css'
 import {googleAPIKey} from './Keys'
+import VideoPlayer from './components/Videos/Videos';
 
 
 
@@ -43,9 +44,7 @@ class App extends Component {
         return (
             <div>
                 <SearchBar  filtersongs={this.searchForSongs}/>
-                <iframe id="ytplayer" type="text/html" width="640" height="360"
-                     src="https://www.youtube.com/embed/?autoplay=1&origin=http://example.com"
-                        frameborder="0"></iframe>
+                <Video />
                 <h1>YouTube React Project</h1>
             </div>
         )

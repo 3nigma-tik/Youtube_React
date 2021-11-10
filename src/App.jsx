@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import SearchBar from './components/SearchBar/SearchBar';
-import './App.css'
-import {googleAPIKey} from './Keys'
+import './App.css';
+import {googleAPIKey} from './Keys';
 import VideoPlayer from './components/Videos/Videos';
+import RelatedVideos from './components/RelatedVideos/RelatedVideos';
+import axios from 'axios';
 
 
 
@@ -17,7 +19,7 @@ class App extends Component {
 
     
     searchForSongs = async (searchTerm) => {
-        let filteredSongs = this.state.songfs.filter(function (song) {
+        let filteredSongs = this.state.songs.filter(function (song) {
             if (song.title.includes(searchTerm) || song.artist.includes(searchTerm) || song.album.includes(searchTerm) || song.genre.includes(searchTerm)){
                 return true
             } else {
@@ -29,13 +31,19 @@ class App extends Component {
         });
     }
 
+    playVideo = async () => {
+        const response = await axios.get("https://www.googleapis.com/youtube/v3/search?q=lofi&duration=long&key=AIzaSyDxx-CQ2sCfb5yUfHqTL0fbXGOaqACFiJg")
+    }
+
+    
 
     render() {
         return (
             <div>
-                <SearchBar  filtersongs={this.searchForSongs}/>
-                <VideoPlayer />
                 <h1>YouTube React Project</h1>
+                <SearchBar filtersongs={this.searchForSongs}/>
+                <VideoPlayer />
+                <RelatedVideos />
             </div>
         )
     }

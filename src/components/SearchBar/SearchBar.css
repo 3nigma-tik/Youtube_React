@@ -3,7 +3,7 @@
     position: relative;
     display: flex;
   }
-  .searchBar .searchInput {
+  .searchBar .searchTerm {
     width: 100%;
     border: 3px solid #00B4CC;
     border-right: none;
@@ -12,7 +12,7 @@
     outline: none;
     color: #9DBFAF;
   }
-  .searchBar .searchInput:focus{
+  .searchBar .searchTerm:focus{
     color: #00B4CC;
   }
   .searchBar .searchButton {

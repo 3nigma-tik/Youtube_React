@@ -6,8 +6,9 @@ import {googleAPIKey} from './Keys'
 import VideoPlayer from './components/Videos/Videos';
 import RelatedVideos from './components/RelatedVideos/RelatedVideos';
 import Comment from './components/Comment/Comment';
-import {Container, Row, Col} from 'react-bootstrap';
-import './'
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col'
 
 
 
@@ -51,20 +52,9 @@ class App extends Component {
             videoId: newVideoId
         })
     }
-
-    getRelatedVideo = async () => {
-        let response = await axios.get('www.googleapis.com/youtube/v3/search?relatedToVideoId=' +  +' &type=video&key= ' + googleAPIKey + '&part=snippet')
-        console.log(response.data)
-        this.setState({
-            searchResults: response.data.item,
-            videoId: response.data.items[0].id.videoId
-        });
-    }
     
 
 
-
-    
     // addComment = async (comment) => {
     //     let response = await axios.post('http://127.0.0.1:8000/comment/', comment);
         
@@ -72,6 +62,8 @@ class App extends Component {
 
     // addReply = async (reply) => {
     //     let response = await axios.post('http://127.0.0.1:8000/reply/', reply);
+
+    //add comment
         
     // }
     
@@ -81,27 +73,10 @@ class App extends Component {
             <div>
                 <h1>YouTube React Project</h1>
                 <SearchBar getAVideo={this.getVideo}/>
-<<<<<<< HEAD
-                <Container>
-                    <Row>
-                        <Col sm={6}>
-                            <VideoPlayer playVideo={this.state.videoId} />
-                            <RelatedVideos />
-                        </Col>
-                        <Col sm={6}>
-                            <h4>Comment Here</h4>
-                             <Comment createComment={this.addComment}/>
-                        </Col>
-                    </Row>
-                </Container>
-               
-                
-=======
                 <VideoPlayer playVideo={this.state.videoId} />
                 <RelatedVideos playRelatedVideo={this.state.searchResults} changeVideo={this.changeVideo} />
                 <h4>Comment Here</h4>
                 <Comment createComment={this.addComment}/>
->>>>>>> db410b5aab00c630e13129a76857125aee34abba
             </div>
         )
     }

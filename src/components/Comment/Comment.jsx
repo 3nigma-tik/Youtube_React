@@ -30,7 +30,7 @@ class Comment extends Component{
                 <form  onSubmit= {this.handleSubmit} method= 'post'>
                     <div>
                         <input text= "text" name="createComment" onChange={this.handleChange} />
-                        <button type="submit" className="searchButton">Post Comment</button>
+                        <button type="submit" className="searchButton">Comment Here</button>
                     </div>
                 </form>
             </div>

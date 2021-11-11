@@ -13,54 +13,60 @@ class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            searchTerm:'dogs'
+            searchResults: [],
+            videoId: ''
         };
     }
 
-    getVideo = async () => {
-        let response = await axios.get('https://www.googleapis.com/youtube/v3/search?q=' + this.state.searchTerm +'&key=AIzaSyDxx-CQ2sCfb5yUfHqTL0fbXGOaqACFiJg&part=snippet')
-        this.setState({      
-          searchTerm: response.data
-        });
+    componentDidMount() {
+        this.getVideo();
+        // this.searchForVideo();
     }
-    
 
-
-    
-    searchForSongs = async (searchTerm) => {
-        let filteredSongs = this.state.songs.filter(function (song) {
-            if (song.title.includes(searchTerm) || song.artist.includes(searchTerm) || song.album.includes(searchTerm) || song.genre.includes(searchTerm)){
-                return true
-            } else {
-                return false;
-            }
-        })
+    getVideo = async (searchTerm) => {
+        let response = await axios.get('https://www.googleapis.com/youtube/v3/search?q=' + searchTerm +'&key=AIzaSyAO3qHzkWaf1rvM0gfltWzvqeXM82svDQk&part=snippet')
+        console.log(response.data)
         this.setState({
-            searchTerm: filteredSongs
+            searchResults: response.data.item,
+            videoId: response.data.items[0].id.videoId
         });
     }
+    
 
-    playVideo = async () => {
-        const response = await axios.get("https://www.googleapis.com/youtube/v3/search?q=lofi&duration=long&key=AIzaSyDxx-CQ2sCfb5yUfHqTL0fbXGOaqACFiJg")
-    }
 
-    addComment = async (comment) => {
-        let response = await axios.post('http://127.0.0.1:8000/comment/', comment);
+    
+    // searchForVideo = async (searchTerm) => {
+    //     let filteredVideo = this.state.searchResults.filter(function (results) {
+    //         if (results.includes(searchTerm)){
+    //             return true
+    //         } else {
+    //             return false;
+    //         }
+    //     })
+    //     this.setState({
+    //         searchTerm: filteredVideo
+    //     });
+    // }
+
+
+
+    // addComment = async (comment) => {
+    //     let response = await axios.post('http://127.0.0.1:8000/comment/', comment);
         
-    }
+    // }
 
-    addReply = async (reply) => {
-        let response = await axios.post('http://127.0.0.1:8000/reply/', reply);
+    // addReply = async (reply) => {
+    //     let response = await axios.post('http://127.0.0.1:8000/reply/', reply);
         
-    }
+    // }
     
 
     render() {
         return (
             <div>
                 <h1>YouTube React Project</h1>
-                <SearchBar filtersongs={this.searchForSongs}/>
-                <VideoPlayer />
+                <SearchBar getAVideo={this.getVideo}/>
+                <VideoPlayer playVideo={this.state.videoId} />
                 <RelatedVideos />
                 <Comment createComment={this.addComment}/>
             </div>

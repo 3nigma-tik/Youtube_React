@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import "./Comment.css"
 
 
 class Comment extends Component{
@@ -24,12 +25,16 @@ class Comment extends Component{
 
     render() {
         return(
-            <form onSubmit= {this.handleSubmit} method= 'post'>
-                <div>
-                    <input text= "text" name="createComment" onChange={this.handleChange} />
-                    <button type="submit" className="searchButton">Post Commment</button>
-                </div>
-            </form>
+            <div>
+                <h3>hello</h3>
+                <form  onSubmit= {this.handleSubmit} method= 'post'>
+                    <div>
+                        <input text= "text" name="createComment" onChange={this.handleChange} />
+                        <button type="submit" className="searchButton">Post Comment</button>
+                    </div>
+                </form>
+            </div>
+            
         )
     }
 }

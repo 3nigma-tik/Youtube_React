@@ -1,0 +1,7 @@
+.fixed-box {
+    position: relative;
+    top:5px;
+    width: 100px;
+    overflow:auto;
+    height: 100%;
+}

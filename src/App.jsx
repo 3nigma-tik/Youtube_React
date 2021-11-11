@@ -6,6 +6,11 @@ import {googleAPIKey} from './Keys'
 import VideoPlayer from './components/Videos/Videos';
 import RelatedVideos from './components/RelatedVideos/RelatedVideos';
 import Comment from './components/Comment/Comment';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col'
+
+
 
 
 
@@ -54,13 +59,23 @@ class App extends Component {
 
     render() {
         return (
-            <div>
-                <h1>YouTube React Project</h1>
-                <SearchBar filterVideos={this.searchForVideo}/>
-                <VideoPlayer />
-                <RelatedVideos />
-                <h4>Comment Here</h4>
-                <Comment createComment={this.addComment}/>
+            <div >
+                <div>
+                    <h1>YouTube React Project</h1>
+                    <SearchBar filterVideos={this.searchForVideo}/>
+                </div>                
+                <Container>
+                    <Row>
+                        <Col md={2}>
+                            <VideoPlayer />
+                            <RelatedVideos /> 
+                        </Col>
+                        <Col md={2}>                                      
+                            <Comment createComment={this.addComment}/>
+                        </Col> 
+                    </Row>
+                </Container> 
+                                               
             </div>
         )
     }

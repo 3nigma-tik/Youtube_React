@@ -6,9 +6,8 @@ import {googleAPIKey} from './Keys'
 import VideoPlayer from './components/Videos/Videos';
 import RelatedVideos from './components/RelatedVideos/RelatedVideos';
 import Comment from './components/Comment/Comment';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col'
+import {Container, Row, Col} from 'react-bootstrap';
+import './'
 
 
 
@@ -36,9 +35,20 @@ class App extends Component {
             videoId: response.data.items[0].id.videoId
         });
     }
+
+    getRelatedVideo = async () => {
+        let response = await axios.get('www.googleapis.com/youtube/v3/search?relatedToVideoId=' +  +' &type=video&key= ' + googleAPIKey + '&part=snippet')
+        console.log(response.data)
+        this.setState({
+            searchResults: response.data.item,
+            videoId: response.data.items[0].id.videoId
+        });
+    }
     
 
 
+
+    
     // addComment = async (comment) => {
     //     let response = await axios.post('http://127.0.0.1:8000/comment/', comment);
         
@@ -55,10 +65,20 @@ class App extends Component {
             <div>
                 <h1>YouTube React Project</h1>
                 <SearchBar getAVideo={this.getVideo}/>
-                <VideoPlayer playVideo={this.state.videoId} />
-                <RelatedVideos />
-                <h4>Comment Here</h4>
-                <Comment createComment={this.addComment}/>
+                <Container>
+                    <Row>
+                        <Col sm={6}>
+                            <VideoPlayer playVideo={this.state.videoId} />
+                            <RelatedVideos />
+                        </Col>
+                        <Col sm={6}>
+                            <h4>Comment Here</h4>
+                             <Comment createComment={this.addComment}/>
+                        </Col>
+                    </Row>
+                </Container>
+               
+                
             </div>
         )
     }

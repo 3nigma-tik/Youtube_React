@@ -20,11 +20,11 @@ class App extends Component {
 
     componentDidMount() {
         this.getVideo();
-        // this.searchForVideo();
+    
     }
 
     getVideo = async (searchTerm) => {
-        let response = await axios.get('https://www.googleapis.com/youtube/v3/search?q=' + searchTerm +'&key=AIzaSyAO3qHzkWaf1rvM0gfltWzvqeXM82svDQk&part=snippet')
+        let response = await axios.get('https://www.googleapis.com/youtube/v3/search?q=' + searchTerm +'&key=' + googleAPIKey + '&part=snippet')
         console.log(response.data)
         this.setState({
             searchResults: response.data.item,
@@ -32,22 +32,6 @@ class App extends Component {
         });
     }
     
-
-
-    
-    // searchForVideo = async (searchTerm) => {
-    //     let filteredVideo = this.state.searchResults.filter(function (results) {
-    //         if (results.includes(searchTerm)){
-    //             return true
-    //         } else {
-    //             return false;
-    //         }
-    //     })
-    //     this.setState({
-    //         searchTerm: filteredVideo
-    //     });
-    // }
-
 
 
     // addComment = async (comment) => {

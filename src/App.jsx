@@ -73,10 +73,21 @@ class App extends Component {
             <div>
                 <h1>YouTube React Project</h1>
                 <SearchBar getAVideo={this.getVideo}/>
-                <VideoPlayer playVideo={this.state.videoId} />
-                <RelatedVideos playRelatedVideo={this.state.searchResults} changeVideo={this.changeVideo} />
-                <h4>Comment Here</h4>
-                <Comment createComment={this.addComment}/>
+                <Container>
+                    <Row>
+                        <Col>
+                            <VideoPlayer playVideo={this.state.videoId} />
+                            <RelatedVideos playRelatedVideo={this.state.searchResults} changeVideo={this.changeVideo} />
+                        </Col>
+                        <Col>
+                            <h4>Comment Here</h4>
+                            <Comment createComment={this.addComment}/>
+                        </Col>
+
+                    </Row>
+                
+                
+                </Container>
             </div>
         )
     }

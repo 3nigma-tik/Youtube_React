@@ -68,6 +68,7 @@ class App extends Component {
                 <SearchBar getAVideo={this.getVideo}/>
                 <VideoPlayer playVideo={this.state.videoId} />
                 <RelatedVideos />
+                <h4>Comment Here</h4>
                 <Comment createComment={this.addComment}/>
             </div>
         )

@@ -6,6 +6,11 @@ import {googleAPIKey} from './Keys'
 import VideoPlayer from './components/Videos/Videos';
 import RelatedVideos from './components/RelatedVideos/RelatedVideos';
 import Comment from './components/Comment/Comment';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col'
+
+
 
 
 

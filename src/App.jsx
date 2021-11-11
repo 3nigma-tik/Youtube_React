@@ -24,6 +24,7 @@ class App extends Component {
 
     componentDidMount() {
         this.getVideo();
+      
     
     }
 
@@ -31,9 +32,24 @@ class App extends Component {
         let response = await axios.get('https://www.googleapis.com/youtube/v3/search?q=' + searchTerm +'&key=' + googleAPIKey + '&part=snippet')
         console.log(response.data)
         this.setState({
-            searchResults: response.data.item,
             videoId: response.data.items[0].id.videoId
         });
+        this.getRelatedVideo(response.data.items[0].id.videoId);
+    }
+
+    getRelatedVideo = async (video) => {
+        
+        let response = await axios.get('https://www.googleapis.com/youtube/v3/search?relatedToVideo='+ video + '&key=' + googleAPIKey + '&part=snippet&maxRelatedVideos=3')
+        console.log(response.data)
+        this.setState({
+            searchResults: response.data.items
+        });
+    }
+
+    changeVideo = (newVideoId) => {
+        this.setState({
+            videoId: newVideoId
+        })
     }
 
     getRelatedVideo = async () => {
@@ -65,6 +81,7 @@ class App extends Component {
             <div>
                 <h1>YouTube React Project</h1>
                 <SearchBar getAVideo={this.getVideo}/>
+<<<<<<< HEAD
                 <Container>
                     <Row>
                         <Col sm={6}>
@@ -79,6 +96,12 @@ class App extends Component {
                 </Container>
                
                 
+=======
+                <VideoPlayer playVideo={this.state.videoId} />
+                <RelatedVideos playRelatedVideo={this.state.searchResults} changeVideo={this.changeVideo} />
+                <h4>Comment Here</h4>
+                <Comment createComment={this.addComment}/>
+>>>>>>> db410b5aab00c630e13129a76857125aee34abba
             </div>
         )
     }

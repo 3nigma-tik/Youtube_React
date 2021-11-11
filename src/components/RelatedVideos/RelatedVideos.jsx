@@ -7,19 +7,21 @@ class RelatedVideos extends Component {
         this.state = {  }
     }
     render() { 
+        console.log(this.props.playRelatedVideo)
         return ( 
-            <div >
-                <iframe id="relvideo1" type="text/html" width="100" height="100"
-  src="https://www.youtube.com/embed/oGWf8tQO__4?autoplay=1&origin=http://example.com"
-  frameborder="0"></iframe>
-                <iframe id="relvideo2" type="text/html" width="100" height="100"
-  src="https://www.youtube.com/embed/U3SPkP4y-rY?autoplay=1&origin=http://example.com"
-  frameborder="0"></iframe>
-                <iframe id="relvideo3" type="text/html" width="100" height="100"
-  src="https://www.youtube.com/embed/waAlgFq9Xq8?autoplay=1&origin=http://example.com"
-  frameborder="0"></iframe>
+            <div>
+                {this.props.playRelatedVideo.map((singleVideoObject) => {
+        
+                    if(singleVideoObject.snippet.thumbnails) {
+                        return (
+                            <span onClick={() => this.props.changeVideo(singleVideoObject.id.videoId)}>
+                                <img src={singleVideoObject.snippet.thumbnails.default.url} />
+                            </span>
+                        )
+                    }
+                })}
             </div>
-         );
+        );
     }
 }
  

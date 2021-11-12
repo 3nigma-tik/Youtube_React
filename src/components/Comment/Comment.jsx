@@ -29,6 +29,7 @@ class Comment extends Component{
     render() {
         return(
             <div>
+                <h4>Comment Here</h4>
                 <h3>hello</h3>
                 <form  onSubmit= {this.handleSubmit} method= 'post'>
                     <div>

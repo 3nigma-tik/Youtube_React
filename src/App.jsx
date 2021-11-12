@@ -63,12 +63,16 @@ class App extends Component {
     
     getComments = async (id) => {
         let response = await axios.get('http://127.0.0.1:8000/comment/' + id + '/')
+        this.setState({
+           comments: response.data     
+        })
     }
+
 
 
     addComment = async (comment) => {
         let response = await axios.post('http://127.0.0.1:8000/comment/', comment);
-        this.getComments()
+        
     }
 
     addReply = async (reply) => {
@@ -90,7 +94,7 @@ class App extends Component {
                             <RelatedVideos playRelatedVideo={this.state.searchResults} changeVideo={this.changeVideo} />
                         </Col>
                         <Col>
-                            <h4>Comment Here</h4>
+                            
                             <Comment createComment={this.addComment} video={this.state.videoId}/>
                         </Col>
 

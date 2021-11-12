@@ -6,11 +6,15 @@ class Comment extends Component{
     constructor(props){
         super(props)
         this.state = {
-            comment: ''
+            
+            text:"",
+            video_id: props.video,
+            
         }
     }
 
     handleChange = (event) => {
+        console.log('hello')
         this.setState({
             [event.target.name]: event.target.value
         })
@@ -28,7 +32,7 @@ class Comment extends Component{
                 <h3>hello</h3>
                 <form  onSubmit= {this.handleSubmit} method= 'post'>
                     <div>
-                        <input text= "text" name="createComment" onChange={this.handleChange} />
+                        <input text= "text" name="text" onChange={this.handleChange} value= {this.state.text} />
                         <button type="submit" className="searchButton">Comment Here</button>
                     </div>
                 </form>

@@ -19,18 +19,15 @@ class App extends Component {
         super(props);
         this.state = {
             searchResults: [],
-            videoId: '',
-<<<<<<< HEAD
+            videoId: '4LZo9ugJTWQ',
             videoTitle: '',
             videoDescription: '',
-=======
             comments: []
->>>>>>> 96af716d84f3addc71d0c0aa0ae529b6e072c44b
         };
     }
 
     componentDidMount() {
-        this.getVideo();
+        this.getVideo('4LZo9ugJTWQ');
       
     
     }
@@ -38,17 +35,19 @@ class App extends Component {
     getVideo = async (searchTerm) => {
         let response = await axios.get('https://www.googleapis.com/youtube/v3/search?q=' + searchTerm +'&key=' + googleAPIKey + '&part=snippet')
         console.log(response.data)
+        console.log(response.data.items[0].id.videoId)
         this.setState({
             videoId: response.data.items[0].id.videoId,
             videoTitle: response.data.items[0].snippet.title,
             videoDescription: response.data.items[0].snippet.description
-        });
-        this.getRelatedVideo(response.data.items[0].id.videoId);
+        }, () => this.getRelatedVideo(response.data.items[0].id.videoId));
+        
     }
 
     getRelatedVideo = async (video) => {
-        
-        let response = await axios.get('https://www.googleapis.com/youtube/v3/search?relatedToVideo='+ video + '&key=' + googleAPIKey + '&part=snippet&maxRelatedVideos=3')
+        let endpoint = `https://www.googleapis.com/youtube/v3/search?relatedToVideoId=${video}&type=video&key=${googleAPIKey}&part=snippet`;
+        console.log(endpoint)
+        let response = await axios.get(endpoint)
         console.log(response.data)
         this.setState({
             searchResults: response.data.items
@@ -91,7 +90,7 @@ class App extends Component {
                         </Col>
                         <Col>
                             <h4>Comment Here</h4>
-                            <Comment createComment={this.addComment}/>
+                            <Comment createComment={this.addComment} playVideo={this.state.videoId}/>
                         </Col>
 
                     </Row>

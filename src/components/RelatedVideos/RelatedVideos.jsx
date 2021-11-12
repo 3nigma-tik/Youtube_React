@@ -7,17 +7,19 @@ class RelatedVideos extends Component {
         this.state = {  }
     }
     render() { 
-        console.log(this.props.playRelatedVideo)
+        console.log('Related Videos From RelatedVideos Component', this.props.playRelatedVideo)
         return ( 
             <div>
                 {this.props.playRelatedVideo.map((singleVideoObject) => {
         
-                    if(singleVideoObject.snippet.thumbnails) {
+                    if(singleVideoObject.snippet) {
                         return (
-                            <span onClick={() => this.props.changeVideo(singleVideoObject.id.videoId)}>
+                            <span key={singleVideoObject.id.videoId} onClick={() => this.props.changeVideo(singleVideoObject.id.videoId)}>
                                 <img src={singleVideoObject.snippet.thumbnails.default.url} />
                             </span>
                         )
+                    }else {
+                        return null;
                     }
                 })}
             </div>

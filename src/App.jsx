@@ -19,7 +19,9 @@ class App extends Component {
         super(props);
         this.state = {
             searchResults: [],
-            videoId: ''
+            videoId: '',
+            videoTitle: '',
+            videoDescription: '',
         };
     }
 
@@ -33,7 +35,9 @@ class App extends Component {
         let response = await axios.get('https://www.googleapis.com/youtube/v3/search?q=' + searchTerm +'&key=' + googleAPIKey + '&part=snippet')
         console.log(response.data)
         this.setState({
-            videoId: response.data.items[0].id.videoId
+            videoId: response.data.items[0].id.videoId,
+            videoTitle: response.data.items[0].snippet.title,
+            videoDescription: response.data.items[0].snippet.description
         });
         this.getRelatedVideo(response.data.items[0].id.videoId);
     }
@@ -76,7 +80,7 @@ class App extends Component {
                 <Container>
                     <Row>
                         <Col>
-                            <VideoPlayer playVideo={this.state.videoId} />
+                            <VideoPlayer playVideo={this.state.videoId} title={this.state.videoTitle} description={this.state.videoDescription}/>
                             <RelatedVideos playRelatedVideo={this.state.searchResults} changeVideo={this.changeVideo} />
                         </Col>
                         <Col>

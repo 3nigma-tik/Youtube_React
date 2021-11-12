@@ -19,7 +19,8 @@ class App extends Component {
         super(props);
         this.state = {
             searchResults: [],
-            videoId: ''
+            videoId: '',
+            comments: []
         };
     }
 
@@ -53,19 +54,21 @@ class App extends Component {
         })
     }
     
+    getComments = async (id) => {
+        let response = await axios.get('http://127.0.0.1:8000/comment/' + id + '/')
+    }
 
 
-    // addComment = async (comment) => {
-    //     let response = await axios.post('http://127.0.0.1:8000/comment/', comment);
-        
-    // }
+    addComment = async (comment) => {
+        let response = await axios.post('http://127.0.0.1:8000/comment/', comment);
+        this.getComments()
+    }
 
-    // addReply = async (reply) => {
-    //     let response = await axios.post('http://127.0.0.1:8000/reply/', reply);
+    addReply = async (reply) => {
+        let response = await axios.post('http://127.0.0.1:8000/reply/', reply);
 
-    //add comment
-        
-    // }
+    
+    }
     
 
     render() {

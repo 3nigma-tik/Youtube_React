@@ -18,8 +18,7 @@ class Comment extends Component{
 
     handleSubmit = async (event) => {
         event.preventDefault();
-
-        
+        this.props.createComment(this.state)
     }
 
 

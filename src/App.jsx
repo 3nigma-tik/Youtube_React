@@ -20,8 +20,12 @@ class App extends Component {
         this.state = {
             searchResults: [],
             videoId: '',
+<<<<<<< HEAD
             videoTitle: '',
             videoDescription: '',
+=======
+            comments: []
+>>>>>>> 96af716d84f3addc71d0c0aa0ae529b6e072c44b
         };
     }
 
@@ -57,19 +61,21 @@ class App extends Component {
         })
     }
     
+    getComments = async (id) => {
+        let response = await axios.get('http://127.0.0.1:8000/comment/' + id + '/')
+    }
 
 
-    // addComment = async (comment) => {
-    //     let response = await axios.post('http://127.0.0.1:8000/comment/', comment);
-        
-    // }
+    addComment = async (comment) => {
+        let response = await axios.post('http://127.0.0.1:8000/comment/', comment);
+        this.getComments()
+    }
 
-    // addReply = async (reply) => {
-    //     let response = await axios.post('http://127.0.0.1:8000/reply/', reply);
+    addReply = async (reply) => {
+        let response = await axios.post('http://127.0.0.1:8000/reply/', reply);
 
-    //add comment
-        
-    // }
+    
+    }
     
 
     render() {

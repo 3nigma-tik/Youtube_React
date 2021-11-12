@@ -8,8 +8,18 @@ class Comment extends Component{
         this.state = {
             
             text:"",
-            video_id: props.video,
+            video_id: props.videoid,
             
+        }
+    }
+
+    componentDidUpdate = (prevState) => {
+        if(
+            this.state.video_id != this.props.videoid
+        ){
+            this.setState({
+                video_id: this.props.videoid
+            })
         }
     }
 

@@ -28,7 +28,7 @@ class App extends Component {
 
     componentDidMount() {
         this.getVideo('4LZo9ugJTWQ');
-        this.getComments();
+        
       
     
     }
@@ -42,6 +42,7 @@ class App extends Component {
             videoTitle: response.data.items[0].snippet.title,
             videoDescription: response.data.items[0].snippet.description
         }, () => this.getRelatedVideo(response.data.items[0].id.videoId));
+        console.log('here is the video', this.state.videoId)
         
     }
 
@@ -70,8 +71,9 @@ class App extends Component {
 
 
 
-    addComment = async (comment) => {
+    addComment = async (comment, videoId) => {
         let response = await axios.post('http://127.0.0.1:8000/comment/', comment);
+        
         
     }
 
@@ -95,7 +97,7 @@ class App extends Component {
                         </Col>
                         <Col>
                             
-                            <Comment createComment={this.addComment} video={this.state.videoId}/>
+                            <Comment createComment={this.addComment} videoid={this.state.videoId}/>
                         </Col>
 
                     </Row>

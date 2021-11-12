@@ -8,7 +8,8 @@ import RelatedVideos from './components/RelatedVideos/RelatedVideos';
 import Comment from './components/Comment/Comment';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col'
+import Col from 'react-bootstrap/Col';
+
 
 
 
@@ -92,7 +93,7 @@ class App extends Component {
                             <RelatedVideos playRelatedVideo={this.state.searchResults} changeVideo={this.changeVideo} />
                         </Col>
                         <Col>
-                            <h4>Comment Here</h4>
+                            
                             <Comment createComment={this.addComment} playVideo={this.state.videoId}/>
                         </Col>
 

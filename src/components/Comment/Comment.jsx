@@ -25,11 +25,12 @@ class Comment extends Component{
     render() {
         return(
             <div>
+                <h4>Comment Here</h4>
                 <h3>hello</h3>
                 <form  onSubmit= {this.handleSubmit} method= 'post'>
                     <div>
-                        <input text= "text" name="createComment" onChange={this.handleChange} />
-                        <button type="submit" className="searchButton">Comment Here</button>
+                        <input text= "text" name="createComment" placeholder="Comment here.." onChange={this.handleChange} />
+                        <button type="submit" className="searchButton">Add Comment</button>
                     </div>
                 </form>
             </div>

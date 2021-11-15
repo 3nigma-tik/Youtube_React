@@ -23,7 +23,7 @@ class Reply extends Component{
     }
 
     handleChange = (event) => {
-        console.log('hello')
+        console.log('')
         this.setState({
             [event.target.name]: event.target.value
         })
@@ -39,8 +39,7 @@ class Reply extends Component{
     render() {
         return(
             <div>
-                <h4>Reply Here</h4>
-                <h3>hello</h3>
+                <h4>Reply Here</h4>                
                 <form  onSubmit= {this.handleSubmit} method= 'post'>
                     <div>
                         <input text= "text" name="text" onChange={this.handleChange} value= {this.state.text} />

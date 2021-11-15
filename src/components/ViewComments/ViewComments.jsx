@@ -1,4 +1,5 @@
 import React from "react";
+
 import './ViewComments.css'
 
 
@@ -8,7 +9,10 @@ const ViewComments = (props) =>{
             return(
                 <div>
                     <p>{comment.text}</p>
-                    <p>{comment.likes} {comment.dislikes}</p>
+                    <p>likes: {comment.likes} dislikes: {comment.dislikes}</p>
+                    
+                        
+                    
                     
                     
                 </div>

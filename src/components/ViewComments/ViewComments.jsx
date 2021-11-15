@@ -9,8 +9,12 @@ const ViewComments = (props) =>{
             return(
                 <div>
                     <p>{comment.text}</p>
+
+                    <p>likes: {comment.likes} dislikes: {comment.dislikes}</p>
                     <p>Likes: {comment.likes} Dislikes:{comment.dislikes}</p>
                     <Reply createReply={props.createReply }/>
+                    
+
                     
                 </div>
             )

@@ -24,7 +24,7 @@ class Reply extends Component{
     }
 
     handleChange = (event) => {
-        console.log('hello')
+        console.log('')
         this.setState({
             [event.target.name]: event.target.value
         })

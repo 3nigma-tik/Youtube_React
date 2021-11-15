@@ -7,6 +7,7 @@ import VideoPlayer from './components/Videos/Videos';
 import RelatedVideos from './components/RelatedVideos/RelatedVideos';
 import Comment from './components/Comment/Comment';
 import ViewComments from './components/ViewComments/ViewComments';
+import Reply from './components/Reply/Reply';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -23,7 +24,8 @@ class App extends Component {
             videoId: '4LZo9ugJTWQ',
             videoTitle: '',
             videoDescription: '',
-            comments: []
+            comments: [],
+            replyFromComment: ''
         };
     }
 
@@ -43,11 +45,13 @@ class App extends Component {
             videoId: response.data.items[0].id.videoId,
             videoTitle: response.data.items[0].snippet.title,
             videoDescription: response.data.items[0].snippet.description
-        }, () => this.getRelatedVideo(response.data.items[0].id.videoId),
-        () => this.getComments(response.data.items[0].id.videoId));
-        
-        console.log('here is the video', this.state.videoId)
-        
+        },   
+        () => {
+            this.getRelatedVideo(response.data.items[0].id.videoId);
+            this.getComments(response.data.items[0].id.videoId);
+            console.log('here is the video', this.state.videoId);
+            console.log('video comments', this.state.comments);
+        })
     }
 
     getRelatedVideo = async (video) => {
@@ -75,8 +79,10 @@ class App extends Component {
 
 
 
-    addComment = async (comment, videoId) => {
+    addComment = async (comment, video_id) => {
         let response = await axios.post('http://127.0.0.1:8000/comment/', comment);
+        this.getComments(video_id)
+        
         
         
     }
@@ -85,6 +91,13 @@ class App extends Component {
         let response = await axios.post('http://127.0.0.1:8000/reply/', reply);
 
     
+    }
+
+    getReplies = async (comment_id) => {
+        let response = await axios.get('http://127.0.0.1:8000/reply/' + comment_id + '/')
+        this.setState({
+            replyFromComment: response.data
+        })
     }
     
 
@@ -101,8 +114,10 @@ class App extends Component {
                         </Col>
                         <Col>
                             
-                            <Comment createComment={this.addComment} videoid={this.state.videoId} />
-                            <ViewComments videoComments={this.state.comments}/>
+                            <Comment createComment={this.addComment} videoid={this.state.videoId} updateComments= {this.getComments}/>
+                            <ViewComments videoComments={this.state.comments} />
+                            <Reply />
+                            
                         </Col>
 
                     </Row>

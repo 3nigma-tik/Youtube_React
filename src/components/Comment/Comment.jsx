@@ -15,7 +15,7 @@ class Comment extends Component{
 
     componentDidUpdate = (prevState) => {
         if(
-            this.state.video_id != this.props.videoid
+            this.state.video_id !== this.props.videoid
         ){
             this.setState({
                 video_id: this.props.videoid
@@ -32,7 +32,8 @@ class Comment extends Component{
 
     handleSubmit = async (event) => {
         event.preventDefault();
-        this.props.createComment(this.state)
+        this.props.createComment(this.state, this.state.video_id);
+        
     }
 
 
@@ -44,7 +45,7 @@ class Comment extends Component{
                 <form  onSubmit= {this.handleSubmit} method= 'post'>
                     <div>
                         <input text= "text" name="text" onChange={this.handleChange} value= {this.state.text} />
-                        <button type="submit" className="searchButton">Comment Here</button>
+                        <button type="submit" className="Button">Comment Here</button>
                     </div>
                 </form>
             </div>

@@ -6,7 +6,7 @@ class Reply extends Component{
         super(props)
         this.state = {
             
-            text:"",
+            reply:"",
             comment_id: props.comment_id,
             
         }
@@ -17,6 +17,7 @@ class Reply extends Component{
             this.state.comment_id != this.props.comment_id
         ){
             this.setState({
+                reply:'',
                 comment_id: this.props.comment_id
             })
         }
@@ -31,7 +32,7 @@ class Reply extends Component{
 
     handleSubmit = async (event) => {
         event.preventDefault();
-        this.props.createReply(this.state);
+        this.props.createReply(this.state.reply);
         
     }
 
@@ -40,7 +41,7 @@ class Reply extends Component{
         return(
             <div>
                 <h4>Reply Here</h4>
-                <h3>hello</h3>
+
                 <form  onSubmit= {this.handleSubmit} method= 'post'>
                     <div>
                         <input text= "text" name="text" onChange={this.handleChange} value= {this.state.text} />

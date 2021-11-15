@@ -115,8 +115,8 @@ class App extends Component {
                         <Col>
                             
                             <Comment createComment={this.addComment} videoid={this.state.videoId} updateComments= {this.getComments}/>
-                            <ViewComments videoComments={this.state.comments} />
-                            <Reply />
+                            <ViewComments videoComments={this.state.comments} createReply={this.addReply} />
+                            
                             
                         </Col>
 

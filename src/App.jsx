@@ -6,6 +6,7 @@ import {googleAPIKey} from './Keys'
 import VideoPlayer from './components/Videos/Videos';
 import RelatedVideos from './components/RelatedVideos/RelatedVideos';
 import Comment from './components/Comment/Comment';
+import ViewComments from './components/ViewComments/ViewComments';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -28,6 +29,7 @@ class App extends Component {
 
     componentDidMount() {
         this.getVideo('4LZo9ugJTWQ');
+        this.getComments('4LZo9ugJTWQ')
         
       
     
@@ -41,7 +43,9 @@ class App extends Component {
             videoId: response.data.items[0].id.videoId,
             videoTitle: response.data.items[0].snippet.title,
             videoDescription: response.data.items[0].snippet.description
-        }, () => this.getRelatedVideo(response.data.items[0].id.videoId));
+        }, () => this.getRelatedVideo(response.data.items[0].id.videoId),
+        () => this.getComments(response.data.items[0].id.videoId));
+        
         console.log('here is the video', this.state.videoId)
         
     }
@@ -62,8 +66,8 @@ class App extends Component {
         })
     }
     
-    getComments = async (id) => {
-        let response = await axios.get('http://127.0.0.1:8000/comment/' + id + '/')
+    getComments = async (videoId) => {
+        let response = await axios.get('http://127.0.0.1:8000/videocomment/' + videoId + '/')
         this.setState({
            comments: response.data     
         })
@@ -97,7 +101,8 @@ class App extends Component {
                         </Col>
                         <Col>
                             
-                            <Comment createComment={this.addComment} videoid={this.state.videoId}/>
+                            <Comment createComment={this.addComment} videoid={this.state.videoId} />
+                            <ViewComments videoComments={this.state.comments}/>
                         </Col>
 
                     </Row>

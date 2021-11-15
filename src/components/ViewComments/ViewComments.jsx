@@ -7,12 +7,12 @@ const ViewComments = (props) =>{
     return (
         props.videoComments.map(function(comment){
             return(
-                <div>
+                <div className= 'textBox' key={comment.id}>
+                    <h5> Comment</h5>                    
                     <p>{comment.text}</p>
-
                     <p>likes: {comment.likes} dislikes: {comment.dislikes}</p>
-                    <p>Likes: {comment.likes} Dislikes:{comment.dislikes}</p>
-                    <Reply createReply={props.createReply }/>
+                    
+                    <Reply commentId={comment.id} createReply={props.createReply }/>
                     
 
                     

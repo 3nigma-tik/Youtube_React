@@ -7,18 +7,18 @@ class Reply extends Component{
         this.state = {
             
             reply:"",
-            comment_id: props.comment_id,
+            comment: this.props.commentId,
             
         }
     }
 
     componentDidUpdate = (prevState) => {
         if(
-            this.state.comment_id != this.props.comment_id
+            this.state.comment != this.props.commentId
         ){
             this.setState({
-                reply:'',
-                comment_id: this.props.comment_id
+                
+                comment: this.props.commentId
             })
         }
     }
@@ -39,13 +39,14 @@ class Reply extends Component{
 
     render() {
         return(
-            <div>
-                <h4>Reply Here</h4>
+            <div>  
 
                 <form  onSubmit= {this.handleSubmit} method= 'post'>
                     <div>
                         <input text= "text" name="text" onChange={this.handleChange} value= {this.state.text} />
-                        <button type="submit" className="Button">Comment Here</button>
+                        <button type="submit" className="Button">Reply</button>
+                        <br/>
+                        <br/>
                     </div>
                 </form>
             </div>

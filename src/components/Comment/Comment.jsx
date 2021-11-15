@@ -40,8 +40,7 @@ class Comment extends Component{
     render() {
         return(
             <div>
-                <h4>Comment Here</h4>
-                <h3>hello</h3>
+                <h4>Comment Here</h4>                
                 <form  onSubmit= {this.handleSubmit} method= 'post'>
                     <div>
                         <input text= "text" name="text" onChange={this.handleChange} value= {this.state.text} />

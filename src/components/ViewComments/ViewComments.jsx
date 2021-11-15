@@ -8,7 +8,7 @@ const ViewComments = (props) =>{
             return(
                 <div>
                     <p>{comment.text}</p>
-                    <p>{comment.likes} {comment.dislikes}</p>
+                    <p>Likes: {comment.likes} Dislikes:{comment.dislikes}</p>
                     
                     
                 </div>
